@@ -1,0 +1,33 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,health"
+
+server:
+  port: 6901
+  shutdown: graceful
+  use-forward-headers: true
+  tomcat:
+    protocol-header: X-Forwarded-Proto
+  error:
+    path: /error
+
+spring:
+  application:
+    name: webproject-videohandler
+  mvc:
+    servlet:
+      load-on-startup: 1
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+    discovery:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
